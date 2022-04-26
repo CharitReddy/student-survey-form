@@ -2,3 +2,76 @@
   width: 50%;
   margin: auto;
 }
+
+.checks_wrapper .checkboxes_header {
+  text-align: left;
+}
+
+.survey_form .checkboxes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.survey_form .checks_wrapper {
+  margin-top: 50px;
+}
+
+.likelihood {
+  margin-top: 50px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+.other_labels {
+  position: relative;
+  width: 100%;
+}
+
+.interests {
+  margin-top: 50px;
+  text-align: left;
+}
+
+.interests_message {
+  display: inline-block;
+  text-align: left;
+}
+
+.radio_buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.radio_buttons span {
+  margin-top: 20px;
+}
+
+.radio_buttons input {
+  margin-top: 20px;
+}
+.buttons {
+  margin-top: 50px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel_btn {
+  background-color: #3f0d12;
+  background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);
+  color: #ffffff;
+}
+
+.submit_btn {
+  background-color: #89d8d3;
+  background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+  color: #000000;
+}
+
+.form_btns {
+  width: 20%;
+  border-radius: 7px;
+  height: 35px;
+  border: none;
+}
