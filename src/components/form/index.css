@@ -1,3 +1,25 @@
+.survey_form_container {
+  background-color: #2d2c2c;
+  height: 125vh;
+}
+
+.container input,
+textarea,
+label,
+span,
+input[type="date"] {
+  color: #ffffff;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+.container input select,
+option {
+  background-color: black;
+  color: #000000;
+}
+
 .survey_form {
   width: 50%;
   margin: auto;
@@ -77,5 +99,5 @@
 }
 
 #back_btn {
-  color: #000000;
+  color: #ffffff;
 }

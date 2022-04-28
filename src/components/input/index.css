@@ -44,10 +44,10 @@ label,
 }
 
 .form__field:focus ~ .form__label {
-  color: #009788;
+  color: white;
 }
 
 .form__field:focus {
   padding-bottom: 6px;
-  border-bottom: 2px solid #009788;
+  border-bottom: white;
 }

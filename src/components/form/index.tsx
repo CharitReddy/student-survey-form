@@ -199,7 +199,7 @@ const Form = () => {
   ];
 
   return (
-    <div>
+    <div className='survey_form_container'>
       <div onClick={() => navigate("/")}>
         <a className='btnfos btnfos-1' id='back_btn'>
           <svg>

@@ -49,6 +49,7 @@ const HomePage = () => {
           </a>
         </div>
       </div>
+      <h2 className='page_title'>Student Survey Form</h2>
       <div className='profile_card_container'>
         <div className='profile_card'>
           <img src={charit} />
