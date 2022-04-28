@@ -26,8 +26,13 @@ const HomePage = () => {
 
   return (
     <div className='container'>
-      <div className='header_container'>
-        <div onClick={() => navigate("survey")}>
+      <h2 className='course_header'>
+        SWE 645 - Component-based Software Development - Spring 2022
+      </h2>
+
+      <h2 className='page_title'>Student Survey Form</h2>
+      <div className='home_buttons_container'>
+        <div onClick={() => navigate("survey")} className='home_buttons'>
           <a className='btnfos btnfos-1'>
             <svg>
               <rect x='0' y='0' fill='none' width='100%' height='100%' />
@@ -35,21 +40,15 @@ const HomePage = () => {
             Fill a Survey &#128394;
           </a>
         </div>
-        {/* <button>Fill a Survey &#128394;</button> */}
-        <h2 className='course_header'>
-          SWE 645 - Component-based Software Development - Spring 2022
-        </h2>
-        {/* <button>View all Surveys &#128466;</button> */}
-        <div onClick={() => navigate("surveys")}>
+        <div onClick={() => navigate("surveys")} className='home_buttons'>
           <a className='btnfos btnfos-1'>
             <svg>
               <rect x='0' y='0' fill='none' width='100%' height='100%' />
             </svg>
-            All Surveys &#128466;
+            View All Surveys &#128466;
           </a>
         </div>
       </div>
-      <h2 className='page_title'>Student Survey Form</h2>
       <div className='profile_card_container'>
         <div className='profile_card'>
           <img src={charit} />

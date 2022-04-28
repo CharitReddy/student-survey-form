@@ -1,3 +1,7 @@
+.surveys_container {
+  background-color: #2d2c2c;
+}
+
 .collapsible_button {
   width: 70%;
   margin: auto;
@@ -17,7 +21,6 @@ div[class*="box"] {
   background-color: #ff6766;
 }
 .box-2 {
-  background-color: #3c3c3c;
   display: flex;
   flex-direction: column;
 }
@@ -46,11 +49,6 @@ div[class*="box"] {
   transition: max-height 0.4s ease-out;
 }
 
-/* 
-========================
-      BUTTON ONE
-========================
-*/
 .btn-one {
   color: #fff;
   transition: all 0.3s;
@@ -100,95 +98,19 @@ div[class*="box"] {
   transform: scale(0.1, 1);
 }
 
-/* 
-========================
-      BUTTON TWO
-========================
-*/
-.btn-two {
-  color: #fff;
-  transition: all 0.5s;
-  position: relative;
-}
-.btn-two span {
-  z-index: 2;
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-.btn-two::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  transition: all 0.5s;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.btn-two::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  transition: all 0.5s;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.btn-two:hover::before {
-  transform: rotate(-45deg);
-  background-color: rgba(255, 255, 255, 0);
-}
-.btn-two:hover::after {
-  transform: rotate(45deg);
-  background-color: rgba(255, 255, 255, 0);
+#back_to_home_btn {
+  padding: 15px;
 }
 
-/* 
-========================
-      BUTTON THREE
-========================
-*/
-.btn-three {
-  color: #fff;
-  transition: all 0.5s;
-  position: relative;
+#back_btn {
+  max-width: 170px;
+  line-height: 45px;
 }
-.btn-three::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  background-color: rgba(255, 255, 255, 0.1);
-  transition: all 0.3s;
+
+#back_to_home_btn svg {
+  height: 45px;
 }
-.btn-three:hover::before {
-  opacity: 0;
-  transform: scale(0.5, 0.5);
-}
-.btn-three::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  opacity: 0;
-  transition: all 0.3s;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  transform: scale(1.2, 1.2);
-}
-.btn-three:hover::after {
-  opacity: 1;
-  transform: scale(1, 1);
+
+.surveys_container {
+  background-color: #2d2c2c;
 }

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const SurveyList = () => {
   let navigate = useNavigate();
-  const [surveys, setSurveys] = useState([]);
+  const [surveys, setSurveys] = useState<any>([]);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -22,10 +22,18 @@ const SurveyList = () => {
       });
   }, []);
 
+  const toggleVisibility = (index: number, open: boolean) => {
+    setSurveys((prev: any) =>
+      prev.map((survey: any, i: number) =>
+        i === index ? { ...survey, isOpen: open } : survey
+      )
+    );
+  };
+
   console.log(surveys);
   return (
-    <>
-      <div onClick={() => navigate("/")}>
+    <div className='surveys_container'>
+      <div onClick={() => navigate("/")} id='back_to_home_btn'>
         <a className='btnfos btnfos-1' id='back_btn'>
           <svg>
             <rect x='0' y='0' fill='none' width='100%' height='100%' />
@@ -33,8 +41,15 @@ const SurveyList = () => {
           &#x2039; Homepage
         </a>
       </div>
-      {surveys?.map((survey: any, index) => (
-        <div className='box-2' key={survey.email}>
+      {surveys?.map((survey: any, index: number) => (
+        <div
+          className='box-2'
+          key={survey.email}
+          onClick={
+            survey.isOpen
+              ? () => toggleVisibility(index, false)
+              : () => toggleVisibility(index, true)
+          }>
           <div className='btn btn-three'>Survey By {survey.firstName}</div>
           <div className={survey.isOpen ? "display_details" : "hide_details"}>
             <div className='expanded_details'>
@@ -96,7 +111,7 @@ const SurveyList = () => {
           {/* {isError && <div>ERROR</div>} */}
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
