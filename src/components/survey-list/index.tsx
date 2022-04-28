@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { baseUrl } from "../../constants/services";
 import axios from "axios";
 import "./index.css";
+import { useNavigate } from "react-router-dom";
 
 const SurveyList = () => {
+  let navigate = useNavigate();
   const [surveys, setSurveys] = useState([]);
   const [isError, setIsError] = useState(false);
 
@@ -23,6 +25,14 @@ const SurveyList = () => {
   console.log(surveys);
   return (
     <>
+      <div onClick={() => navigate("/")}>
+        <a className='btnfos btnfos-1' id='back_btn'>
+          <svg>
+            <rect x='0' y='0' fill='none' width='100%' height='100%' />
+          </svg>
+          &#x2039; Homepage
+        </a>
+      </div>
       {surveys?.map((survey: any, index) => (
         <div className='box-2' key={survey.email}>
           <div className='btn btn-three'>Survey By {survey.firstName}</div>

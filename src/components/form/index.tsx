@@ -3,6 +3,7 @@ import "./index.css";
 import Input from "../input";
 import axios from "axios";
 import { baseUrl } from "../../constants/services";
+import { useNavigate } from "react-router-dom";
 
 interface FORMDATA {
   firstName: string;
@@ -34,6 +35,8 @@ const initial_formData = {
   likelihood: "Likely",
 };
 const Form = () => {
+  let navigate = useNavigate();
+
   const [formData, setFormData] = useState<FORMDATA>(initial_formData);
 
   // axios.defaults.baseUrl = "";
@@ -196,116 +199,126 @@ const Form = () => {
   ];
 
   return (
-    <div className='survey_form'>
-      <form>
-        {surveyFields?.map((field) => (
-          <Input
-            type={field.type}
-            name={field.name}
-            required={field.required}
-            value={field.value}
-            label={field.label}
-            onChange={handleChange}
-            key={field.name}
-            placeholder={field.label}
-          />
-        ))}
-        <div className='checks_wrapper'>
-          <span className='checkboxes_header'>
-            What do you like most about the campus?
-          </span>
-          <div className='checkboxes'>
-            {checkboxes?.map((checkbox) => (
-              <div key={checkbox.value}>
+    <div>
+      <div onClick={() => navigate("/")}>
+        <a className='btnfos btnfos-1' id='back_btn'>
+          <svg>
+            <rect x='0' y='0' fill='none' width='100%' height='100%' />
+          </svg>
+          &#x2039; Homepage
+        </a>
+      </div>
+      <div className='survey_form'>
+        <form>
+          {surveyFields?.map((field) => (
+            <Input
+              type={field.type}
+              name={field.name}
+              required={field.required}
+              value={field.value}
+              label={field.label}
+              onChange={handleChange}
+              key={field.name}
+              placeholder={field.label}
+            />
+          ))}
+          <div className='checks_wrapper'>
+            <span className='checkboxes_header'>
+              What do you like most about the campus?
+            </span>
+            <div className='checkboxes'>
+              {checkboxes?.map((checkbox) => (
+                <div key={checkbox.value}>
+                  <input
+                    type={"checkbox"}
+                    name={checkbox.name}
+                    value={checkbox.value}
+                    onChange={handleCheckBoxes}
+                  />
+                  <span className='other_labels'>{checkbox.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className='interests'>
+            <span className='interests_message'>
+              How did you become interested in this University?
+            </span>
+            <div className='radio_buttons'>
+              <div>
+                <span className='other_labels'>Friends</span>
                 <input
-                  type={"checkbox"}
-                  name={checkbox.name}
-                  value={checkbox.value}
-                  onChange={handleCheckBoxes}
+                  type={"radio"}
+                  name={"interestInUni"}
+                  required={true}
+                  value={"Friends"}
+                  onChange={handleChange}
                 />
-                <span className='other_labels'>{checkbox.value}</span>
               </div>
-            ))}
-          </div>
-        </div>
-        <div className='interests'>
-          <span className='interests_message'>
-            How did you become interested in this University?
-          </span>
-          <div className='radio_buttons'>
-            <div>
-              <span className='other_labels'>Friends</span>
-              <input
-                type={"radio"}
-                name={"interestInUni"}
-                required={true}
-                value={"Friends"}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <span className='other_labels'>Television</span>
-              <input
-                type={"radio"}
-                name={"interestInUni"}
-                required={true}
-                value={"Television"}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <span className='other_labels'>Internet</span>
-              <input
-                type={"radio"}
-                name={"interestInUni"}
-                required={true}
-                value={"Internet"}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <span className='other_labels'>Other</span>
-              <input
-                type={"radio"}
-                name={"interestInUni"}
-                required={true}
-                value={"Other"}
-                onChange={handleChange}
-              />
+              <div>
+                <span className='other_labels'>Television</span>
+                <input
+                  type={"radio"}
+                  name={"interestInUni"}
+                  required={true}
+                  value={"Television"}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <span className='other_labels'>Internet</span>
+                <input
+                  type={"radio"}
+                  name={"interestInUni"}
+                  required={true}
+                  value={"Internet"}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <span className='other_labels'>Other</span>
+                <input
+                  type={"radio"}
+                  name={"interestInUni"}
+                  required={true}
+                  value={"Other"}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div className='likelihood'>
-          <span>
-            How likely would you recommend this University to other prospective
-            students?
-          </span>
+          <div className='likelihood'>
+            <span>
+              How likely would you recommend this University to other
+              prospective students?
+            </span>
 
-          <select
-            value={formData.likelihood}
-            name='likelihood'
-            id='likelihood'
-            onChange={handleChange}>
-            <option value='Very Likely'>Very Likely</option>
-            <option value='Likely'>Likely</option>
-            <option value='Unlikely'>Unlikely</option>
-          </select>
-        </div>
-        <div className='buttons'>
-          <button
-            className='submit_btn form_btns'
-            type='submit'
-            onClick={(event) => handleSubmit(event)}>
-            SUBMIT
-          </button>
-          <button
-            className='cancel_btn form_btns'
-            type='reset'
-            onClick={handleCancelClick}>
-            CANCEL
-          </button>
-        </div>
-      </form>
+            <select
+              value={formData.likelihood}
+              name='likelihood'
+              id='likelihood'
+              onChange={handleChange}>
+              <option value='Very Likely'>Very Likely</option>
+              <option value='Likely'>Likely</option>
+              <option value='Unlikely'>Unlikely</option>
+            </select>
+          </div>
+          <div className='buttons'>
+            <button
+              className='submit_btn form_btns'
+              type='submit'
+              onClick={(event) => handleSubmit(event)}>
+              SUBMIT
+            </button>
+            <button
+              className='cancel_btn form_btns'
+              type='reset'
+              onClick={handleCancelClick}>
+              CANCEL
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
