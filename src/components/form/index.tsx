@@ -18,21 +18,23 @@ interface FORMDATA {
   interestInUni: string;
   likelihood: string;
 }
+
+const initial_formData = {
+  firstName: "",
+  lastName: "",
+  streetAddress: "",
+  city: "",
+  state: "",
+  zip: "",
+  phoneNumber: "",
+  emailId: "",
+  dateOfSurvey: "",
+  likesAboutCampus: [],
+  interestInUni: "",
+  likelihood: "Likely",
+};
 const Form = () => {
-  const [formData, setFormData] = useState<FORMDATA>({
-    firstName: "",
-    lastName: "",
-    streetAddress: "",
-    city: "",
-    state: "",
-    zip: "",
-    phoneNumber: "",
-    emailId: "",
-    dateOfSurvey: "",
-    likesAboutCampus: [],
-    interestInUni: "",
-    likelihood: "Likely",
-  });
+  const [formData, setFormData] = useState<FORMDATA>(initial_formData);
 
   // axios.defaults.baseUrl = "";
 
@@ -70,6 +72,16 @@ const Form = () => {
         ),
       }));
     }
+  };
+
+  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(formData);
+    event.preventDefault();
+    axios.post(`${baseUrl}post`, formData);
+  };
+
+  const handleCancelClick = () => {
+    setFormData(initial_formData);
   };
 
   const {
@@ -195,6 +207,7 @@ const Form = () => {
             label={field.label}
             onChange={handleChange}
             key={field.name}
+            placeholder={field.label}
           />
         ))}
         <div className='checks_wrapper'>
@@ -279,8 +292,18 @@ const Form = () => {
           </select>
         </div>
         <div className='buttons'>
-          <button className='submit_btn form_btns'>SUBMIT</button>
-          <button className='cancel_btn form_btns'>CANCEL</button>
+          <button
+            className='submit_btn form_btns'
+            type='submit'
+            onClick={(event) => handleSubmit(event)}>
+            SUBMIT
+          </button>
+          <button
+            className='cancel_btn form_btns'
+            type='reset'
+            onClick={handleCancelClick}>
+            CANCEL
+          </button>
         </div>
       </form>
     </div>

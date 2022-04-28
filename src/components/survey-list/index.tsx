@@ -20,6 +20,7 @@ const SurveyList = () => {
       });
   }, []);
 
+  console.log(surveys);
   return (
     <>
       {surveys?.map((survey: any, index) => (

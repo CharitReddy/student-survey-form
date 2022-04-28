@@ -7,6 +7,7 @@ type InputProps = {
   value: string;
   onChange: any;
   label: string;
+  placeholder: string;
 };
 
 const Input = ({
@@ -16,6 +17,7 @@ const Input = ({
   value,
   onChange,
   label,
+  placeholder,
 }: InputProps) => {
   return (
     <div className='form__group'>
@@ -26,6 +28,7 @@ const Input = ({
         onChange={onChange}
         value={value}
         className='form__field'
+        placeholder={placeholder}
       />
       <label htmlFor={name} className='form__label'>
         {label}
