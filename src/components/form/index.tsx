@@ -4,21 +4,8 @@ import Input from "../input";
 import axios from "axios";
 import { baseUrl } from "../../constants/services";
 import { useNavigate } from "react-router-dom";
-
-interface FORMDATA {
-  firstName: string;
-  lastName: string;
-  streetAddress: string;
-  city: string;
-  state: string;
-  zip: string;
-  phoneNumber: string;
-  emailId: string;
-  dateOfSurvey: string;
-  likesAboutCampus: string[];
-  interestInUni: string;
-  likelihood: string;
-}
+import Message from "../message";
+import FORMDATA from "../../interfaces";
 
 const initial_formData = {
   firstName: "",
@@ -38,14 +25,8 @@ const Form = () => {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState<FORMDATA>(initial_formData);
-
-  // axios.defaults.baseUrl = "";
-
-  useEffect(() => {
-    // axios.get(`${baseUrl}Hw3/get`);
-    // axios.get("http://172.31.48.1:9090/Hw3");
-    // axios.post(`${baseUrl}Hw3/post`, formData);
-  }, []);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
   const handleChange = (
     event:
@@ -57,8 +38,6 @@ const Form = () => {
       ...prev,
       [name]: value,
     }));
-
-    console.log(formData);
   };
 
   const handleCheckBoxes = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,9 +57,15 @@ const Form = () => {
   };
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(formData);
     event.preventDefault();
-    axios.post(`${baseUrl}post`, formData);
+    axios
+      .post(`${baseUrl}post`, formData)
+      .then(() => {
+        setIsSuccess(true);
+      })
+      .catch((error) => {
+        setIsError(true);
+      });
   };
 
   const handleCancelClick = () => {
@@ -319,6 +304,20 @@ const Form = () => {
           </div>
         </form>
       </div>
+      {isError && (
+        <Message
+          type={"error"}
+          message={"error submitting the survey! please try again"}
+          iconCode={"random"}
+        />
+      )}
+      {isSuccess && (
+        <Message
+          type={"success"}
+          message={"survey has been submitted successfully!"}
+          iconCode={"random"}
+        />
+      )}
     </div>
   );
 };

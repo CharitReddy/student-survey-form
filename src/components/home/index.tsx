@@ -50,10 +50,12 @@ const HomePage = () => {
         </div>
       </div>
       <div className='profile_card_container'>
-        <div className='profile_card'>
-          <img src={charit} />
-          <span>Name here</span>
-        </div>
+        {team.map((member) => (
+          <div className='profile_card'>
+            <img src={charit} className='card_images' />
+            <span className='card_names'>{member.name}</span>
+          </div>
+        ))}
       </div>
     </div>
   );

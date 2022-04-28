@@ -1,0 +1,22 @@
+.error_message {
+  text-transform: uppercase;
+  background-color: #ffffff;
+  text-align: center;
+  height: 100px;
+  line-height: 100px;
+  justify-content: center;
+  width: 70%;
+  border-radius: 7px;
+  margin: auto;
+  font-size: 25px;
+}
+
+.success {
+  border: 1px solid green;
+  color: green;
+}
+
+.error {
+  border: 1px solid red;
+  color: red;
+}

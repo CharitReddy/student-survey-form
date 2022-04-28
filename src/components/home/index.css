@@ -31,12 +31,15 @@
 
 .profile_card_container {
   display: flex;
+  justify-content: space-evenly;
+  margin-top: 75px;
 }
 .profile_card {
   height: 250px;
-  background-color: red;
+  background-color: white;
   border-radius: 10px;
   width: 200px;
+  padding: 15px;
 }
 
 .btnfos {
@@ -112,4 +115,17 @@
 
 .home_buttons {
   width: 30%;
+}
+
+.card_images {
+  display: block;
+  margin: auto;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.card_names {
+  color: black;
+  text-transform: uppercase;
 }

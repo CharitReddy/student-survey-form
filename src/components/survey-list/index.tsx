@@ -3,10 +3,12 @@ import { baseUrl } from "../../constants/services";
 import axios from "axios";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
+import Message from "../message";
+import FORMDATA from "../../interfaces";
 
 const SurveyList = () => {
   let navigate = useNavigate();
-  const [surveys, setSurveys] = useState<any>([]);
+  const [surveys, setSurveys] = useState<FORMDATA[]>([]);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -14,7 +16,10 @@ const SurveyList = () => {
       .get(`${baseUrl}get`)
       .then((response) => {
         setSurveys(
-          response?.data?.map((survey: any) => ({ ...survey, isOpen: false }))
+          response?.data?.map((survey: FORMDATA) => ({
+            ...survey,
+            isOpen: false,
+          }))
         );
       })
       .catch((error) => {
@@ -23,8 +28,8 @@ const SurveyList = () => {
   }, []);
 
   const toggleVisibility = (index: number, open: boolean) => {
-    setSurveys((prev: any) =>
-      prev.map((survey: any, i: number) =>
+    setSurveys((prev: FORMDATA[]) =>
+      prev.map((survey: FORMDATA, i: number) =>
         i === index ? { ...survey, isOpen: open } : survey
       )
     );
@@ -111,6 +116,13 @@ const SurveyList = () => {
           {/* {isError && <div>ERROR</div>} */}
         </div>
       ))}
+      {isError && (
+        <Message
+          iconCode={"&#9888;"}
+          message={"error fetching the surveys! please try again"}
+          type={"error"}
+        />
+      )}
     </div>
   );
 };
