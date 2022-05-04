@@ -2,14 +2,14 @@ import "./index.css";
 
 type MessageProps = {
   message: string;
-  iconCode: string;
+  icon: React.ReactNode;
   type: string;
 };
 
-const Error = ({ message, iconCode, type }: MessageProps) => {
+const Error = ({ message, icon, type }: MessageProps) => {
   return (
     <div className={`error_message ${type}`}>
-      &#10004; &#9888;
+      {icon}
       {message}
     </div>
   );

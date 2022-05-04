@@ -8,7 +8,37 @@ import FORMDATA from "../../interfaces";
 
 const SurveyList = () => {
   let navigate = useNavigate();
-  const [surveys, setSurveys] = useState<FORMDATA[]>([]);
+  // const [surveys, setSurveys] = useState<FORMDATA[]>([]);
+  const [surveys, setSurveys] = useState<FORMDATA[]>([
+    {
+      firstName: "string",
+      lastName: "string",
+      streetAddress: "string",
+      city: "string",
+      state: "string",
+      zip: "string",
+      phoneNumber: "string",
+      emailId: "string",
+      dateOfSurvey: "string",
+      likesAboutCampus: ["string", "string"],
+      interestInUni: "string",
+      likelihood: "string",
+    },
+    {
+      firstName: "string22",
+      lastName: "string22",
+      streetAddress: "string22",
+      city: "string22",
+      state: "string22",
+      zip: "string22",
+      phoneNumber: "string22",
+      emailId: "string22",
+      dateOfSurvey: "string22",
+      likesAboutCampus: ["string22", "string22"],
+      interestInUni: "string22",
+      likelihood: "string22",
+    },
+  ]);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -35,11 +65,13 @@ const SurveyList = () => {
     );
   };
 
-  console.log(surveys);
   return (
     <div className='surveys_container'>
-      <div onClick={() => navigate("/")} id='back_to_home_btn'>
-        <a className='btnfos btnfos-1' id='back_btn'>
+      <div id='back_to_home_btn'>
+        <a
+          className='btnfos btnfos-1'
+          id='back_btn'
+          onClick={() => navigate("/")}>
           <svg>
             <rect x='0' y='0' fill='none' width='100%' height='100%' />
           </svg>
@@ -47,69 +79,74 @@ const SurveyList = () => {
         </a>
       </div>
       {surveys?.map((survey: any, index: number) => (
-        <div
-          className='box-2'
-          key={survey.email}
-          onClick={
-            survey.isOpen
-              ? () => toggleVisibility(index, false)
-              : () => toggleVisibility(index, true)
-          }>
-          <div className='btn btn-three'>Survey By {survey.firstName}</div>
+        <div className='box-2' key={survey.email}>
+          <div
+            className='btn btn-three'
+            onClick={
+              survey.isOpen
+                ? () => toggleVisibility(index, false)
+                : () => toggleVisibility(index, true)
+            }>
+            Survey By {survey.firstName}
+          </div>
           <div className={survey.isOpen ? "display_details" : "hide_details"}>
             <div className='expanded_details'>
-              <div>
-                <span>Survey by {survey.firstName}</span>{" "}
-                <span> {survey.lastName}</span>
+              <div className='survey_details_fields'>
+                <b>Survey by: </b>{" "}
+                <span>
+                  {" "}
+                  {survey.firstName} {survey.lastName}
+                </span>
               </div>
 
-              <div>
-                <span>Date of survey: </span> <span>{survey.dateOfSurvey}</span>
+              <div className='survey_details_fields'>
+                <b>Date of survey: </b> <span>{survey.dateOfSurvey}</span>
               </div>
-              <div>
+              <div className='survey_details_fields'>
                 {" "}
-                <span>City: </span> <span>{survey.city}</span>
+                <b>City: </b> <span>{survey.city}</span>
               </div>
-              <div>
-                <span>Email: </span> <span>{survey.email}</span>
+              <div className='survey_details_fields'>
+                <b>Email: </b> <span>{survey.emailId}</span>
               </div>
-              <div>
-                <span>First Name: </span> <span>{survey.firstName}</span>
+              <div className='survey_details_fields'>
+                <b>First Name: </b> <span>{survey.firstName}</span>
               </div>
-              <div>
-                <span>Last Name: </span> <span>{survey.lastName}</span>
+              <div className='survey_details_fields'>
+                <b>Last Name: </b> <span>{survey.lastName}</span>
               </div>
-              <div>
-                <span>Likelihood of recommending the University: </span>{" "}
-              </div>
-              <div>
-                {" "}
+              <div className='survey_details_fields'>
+                <b>Likelihood of recommending the University: </b>{" "}
                 <span>{survey.likelihood}</span>
               </div>
-              <div>
+
+              <div className='survey_details_fields'>
                 {" "}
-                <span>Interests in the University: </span>{" "}
+                <b>Interests in the University: </b>{" "}
+                <span>
+                  {survey.likesAboutCampus.map(
+                    (interest: string, index: number) =>
+                      index !== survey.likesAboutCampus.length - 1
+                        ? `${interest}, `
+                        : interest
+                  )}
+                </span>
               </div>
-              <div>
+
+              <div className='survey_details_fields'>
                 {" "}
-                <span>{survey.likesAboutCampus}</span>
+                <b>Telephone number: </b> <span>{survey.phoneNumber}</span>
               </div>
-              <div>
+              <div className='survey_details_fields'>
                 {" "}
-                <span>Telephone number: </span>{" "}
-                <span>{survey.phoneNumber}</span>
+                <b>State: </b> <span>{survey.state}</span>
               </div>
-              <div>
+              <div className='survey_details_fields'>
                 {" "}
-                <span>State: </span> <span>{survey.state}</span>
+                <b>Street Address: </b> <span>{survey.streetAddress}</span>
               </div>
-              <div>
-                {" "}
-                <span>Street Address: </span>{" "}
-                <span>{survey.streetAddress}</span>
-              </div>
-              <div>
-                <span>ZIP Code: </span> <span>{survey.zip}</span>
+              <div className='survey_details_fields'>
+                <b>ZIP Code: </b> <span>{survey.zip}</span>
               </div>
             </div>
           </div>
@@ -118,7 +155,7 @@ const SurveyList = () => {
       ))}
       {isError && (
         <Message
-          iconCode={"&#9888;"}
+          icon={<span>&#9888;</span>}
           message={"error fetching the surveys! please try again"}
           type={"error"}
         />

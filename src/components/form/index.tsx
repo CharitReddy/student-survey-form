@@ -185,8 +185,11 @@ const Form = () => {
 
   return (
     <div className='survey_form_container'>
-      <div onClick={() => navigate("/")} id='back_to_home_btn'>
-        <a className='btnfos btnfos-1' id='back_btn'>
+      <div id='back_to_home_btn'>
+        <a
+          className='btnfos btnfos-1'
+          id='back_btn'
+          onClick={() => navigate("/")}>
           <svg>
             <rect x='0' y='0' fill='none' width='100%' height='100%' />
           </svg>
@@ -308,14 +311,14 @@ const Form = () => {
         <Message
           type={"error"}
           message={"error submitting the survey! please try again"}
-          iconCode={"random"}
+          icon={<span>&#9888;</span>}
         />
       )}
       {isSuccess && (
         <Message
           type={"success"}
           message={"survey has been submitted successfully!"}
-          iconCode={"random"}
+          icon={<span>&#10004;</span>}
         />
       )}
     </div>

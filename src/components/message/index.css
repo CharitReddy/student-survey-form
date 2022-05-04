@@ -15,8 +15,15 @@
   border: 1px solid green;
   color: green;
 }
+.success span {
+  color: green;
+}
 
 .error {
   border: 1px solid red;
+  color: red;
+}
+
+.error span {
   color: red;
 }

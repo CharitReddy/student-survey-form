@@ -1,10 +1,14 @@
+body {
+  background-color: #2d2c2c;
+}
+
 * {
   -moz-box-sizing: inherit;
   box-sizing: inherit;
   -webkit-transition-property: all;
   transition-property: all;
-  -webkit-transition-duration: 0.6s;
-  transition-duration: 0.6s;
+  -webkit-transition-duration: 0.7s;
+  transition-duration: 0.7s;
   -webkit-transition-timing-function: ease;
   transition-timing-function: ease;
 }
