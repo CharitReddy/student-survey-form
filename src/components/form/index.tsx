@@ -27,6 +27,7 @@ const Form = () => {
   const [formData, setFormData] = useState<FORMDATA>(initial_formData);
   const [isError, setIsError] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [hasEmptyFields, setHasEmptyFields] = useState<boolean>(false);
 
   const handleChange = (
     event:
@@ -38,6 +39,9 @@ const Form = () => {
       ...prev,
       [name]: value,
     }));
+    if (hasEmptyFields) {
+      setHasEmptyFields(false);
+    }
   };
 
   const handleCheckBoxes = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,20 +58,33 @@ const Form = () => {
         ),
       }));
     }
+    if (hasEmptyFields) {
+      setHasEmptyFields(false);
+    }
   };
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(formData.dateOfSurvey);
     event.preventDefault();
-    axios
-      .post(`${baseUrl}post`, formData)
-      .then(() => {
-        setIsSuccess(true);
-      })
-      .catch((error) => {
-        setIsError(true);
-      });
+    let hasNoEmptyFields = true;
+    Object.entries(formData).forEach(([key, value]) => {
+      if (!value) {
+        setHasEmptyFields(true);
+        hasNoEmptyFields = false;
+      }
+    });
+    if (hasNoEmptyFields) {
+      axios
+        .post(`${baseUrl}post`, formData)
+        .then(() => {
+          setIsSuccess(true); // Setting a state
+          setFormData(initial_formData); // Setting a state
+        })
+        .catch((error) => {
+          setIsError(true); // Setting a state
+        });
+    }
   };
-
   const handleCancelClick = () => {
     setFormData(initial_formData);
   };
@@ -154,8 +171,6 @@ const Form = () => {
     },
   ];
 
-  console.table(formData);
-
   const checkboxes = [
     {
       name: "students",
@@ -196,6 +211,7 @@ const Form = () => {
           &#x2039; Homepage
         </a>
       </div>
+
       <div className='survey_form'>
         <form>
           {surveyFields?.map((field) => (
@@ -291,6 +307,7 @@ const Form = () => {
               <option value='Unlikely'>Unlikely</option>
             </select>
           </div>
+
           <div className='buttons'>
             <button
               className='submit_btn form_btns'
@@ -314,6 +331,14 @@ const Form = () => {
           icon={<span>&#9888;</span>}
         />
       )}
+      {hasEmptyFields && (
+        <Message
+          type={"error"}
+          message={"Please fill in all the fields!"}
+          icon={<span>&#9888;</span>}
+        />
+      )}
+
       {isSuccess && (
         <Message
           type={"success"}

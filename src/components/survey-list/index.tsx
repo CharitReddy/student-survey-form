@@ -8,37 +8,8 @@ import FORMDATA from "../../interfaces";
 
 const SurveyList = () => {
   let navigate = useNavigate();
-  // const [surveys, setSurveys] = useState<FORMDATA[]>([]);
-  const [surveys, setSurveys] = useState<FORMDATA[]>([
-    {
-      firstName: "string",
-      lastName: "string",
-      streetAddress: "string",
-      city: "string",
-      state: "string",
-      zip: "string",
-      phoneNumber: "string",
-      emailId: "string",
-      dateOfSurvey: "string",
-      likesAboutCampus: ["string", "string"],
-      interestInUni: "string",
-      likelihood: "string",
-    },
-    {
-      firstName: "string22",
-      lastName: "string22",
-      streetAddress: "string22",
-      city: "string22",
-      state: "string22",
-      zip: "string22",
-      phoneNumber: "string22",
-      emailId: "string22",
-      dateOfSurvey: "string22",
-      likesAboutCampus: ["string22", "string22"],
-      interestInUni: "string22",
-      likelihood: "string22",
-    },
-  ]);
+
+  const [surveys, setSurveys] = useState<FORMDATA[]>([]);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {

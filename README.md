@@ -6,6 +6,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+## If node_modules are missing
+
+Enter the command `npm i` in the project directory. This would install all dependencies.
+
 ### `npm start`
 
 Runs the app in the development mode.\

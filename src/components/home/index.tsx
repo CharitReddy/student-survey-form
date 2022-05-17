@@ -1,23 +1,26 @@
 import "./index.css";
 import { useNavigate } from "react-router-dom";
-import charit from "./charit.jpg";
+import charit from "./charit.jpeg";
+import ranjith from "./ranjith.jpeg";
+import shushruth from "./shushruth.jpeg";
+import varun from "./varun.jpeg";
 
 const team = [
   {
     name: "Siva Charit Reddy Chittamuru",
-    imageSrc: "charit",
+    imageSrc: charit,
   },
   {
     name: "Ranjith Vallambhatla",
-    imageSrc: "ranjith",
+    imageSrc: ranjith,
   },
   {
     name: "Shushruth Reddy Poddturi",
-    imageSrc: "shushruth",
+    imageSrc: shushruth,
   },
   {
     name: "Varun Reddy Muddasani",
-    imageSrc: "varun",
+    imageSrc: varun,
   },
 ];
 
@@ -27,7 +30,7 @@ const HomePage = () => {
   return (
     <div className='container'>
       <h2 className='course_header'>
-        SWE 645 - Component-based Software Development - Spring 2022
+        SWE 645 | Component-based Software Development | Spring 2022
       </h2>
 
       <h2 className='page_title'>Student Survey Form</h2>
@@ -52,7 +55,11 @@ const HomePage = () => {
       <div className='profile_card_container'>
         {team.map((member) => (
           <div className='profile_card'>
-            <img src={charit} className='card_images' />
+            <img
+              src={member.imageSrc}
+              className='card_images'
+              alt='profile_pic'
+            />
             <span className='card_names'>{member.name}</span>
           </div>
         ))}
